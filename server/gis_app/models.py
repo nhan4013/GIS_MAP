@@ -18,7 +18,7 @@ class AdministrativeBoundary(models.Model):
         help_text="Tên quận/huyện (District/Ward name)"
     )
     
-    geom = gis_models.PolygonField(
+    geom = gis_models.MultiPolygonField(
         help_text="Ranh giới địa lý của quận/huyện (Geographic boundary polygon)"
     )
     
@@ -97,7 +97,7 @@ class EnrollmentZone(models.Model):
         to_field='id',
         help_text= "Trường học tuyển sinh (Linked school)"
     )
-    geom = gis_models.PolygonField(
+    geom = gis_models.MultiPolygonField(
         help_text="Ranh giới vùng tuyển sinh (Enrollment zone boundary polygon)"
     )
     

@@ -5,14 +5,14 @@ import "leaflet/dist/leaflet.css";
 
 const MapView: React.FC<SearchPanelProps> = ({ onSelectSchool }) => {
   const schools = [
-    { id: 1, name: "School A", position: [51.505, -0.09] },
-    { id: 2, name: "School B", position: [51.51, -0.1] },
+    { id: 1, name: "School A", position: [10.764010, 106.682031] },
+    { id: 2, name: "School B", position: [10.814011, 106.622170] },
   ];
 
   return (
     <div className="w-full h-full">
       <MapContainer
-        center={[51.505, -0.09]}
+        center={[10.77636, 106.70109]}
         zoom={13}
         scrollWheelZoom={true}
         className="w-full h-full"
