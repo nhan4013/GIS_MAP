@@ -19,6 +19,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv(os.path.join(BASE_DIR, '.env'))
 
 GDAL_LIBRARY_PATH = r"E:\OSGeo4w\bin\gdal311.dll"
+GEOS_LIBRARY_PATH = r"E:\OSGeo4w\bin\geos_c.dll"
+PROJ_LIB = r"E:\OSGeo4w\share\proj"
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
