@@ -11,6 +11,8 @@ import {
   FaMoneyCheckAlt,
 } from "react-icons/fa";
 
+
+
 const categories = [
   { label: "Restaurants", icon: <FaUtensils /> },
   { label: "Hotels", icon: <FaHotel /> },
@@ -32,6 +34,9 @@ const Header: React.FC<SearchPanelProps> = ({onSelectSchool}) => {
       onSelectSchool(query.trim());
     }
   };
+
+
+
   return (
     <header className="absolute top-4 left-20 flex flex-col items-center z-[1000] pointer-events-none">
       <div className="flex items-center gap-4 px-8 py-3 pointer-events-auto">

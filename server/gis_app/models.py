@@ -140,7 +140,7 @@ class Infrastructure(models.Model):
         verbose_name_plural = "Infrastructures"
         
     def __str__(self):
-        return f"Infrastructure for {self.school.name}"
+        return f"Infrastructure for {self.school_id.name}"
     
     
 class PolicyAndActivity(models.Model):
