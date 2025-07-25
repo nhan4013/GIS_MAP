@@ -9,24 +9,33 @@ import {
   FaTrain,
   FaPrescriptionBottle,
   FaMoneyCheckAlt,
+  FaBook,
+  FaStore,
 } from "react-icons/fa";
 
-
+interface School {
+  id: number;
+  name: string;
+}
 
 const categories = [
-  { label: "Restaurants", icon: <FaUtensils /> },
-  { label: "Hotels", icon: <FaHotel /> },
-  { label: "Things to do", icon: <FaCamera /> },
-  { label: "Museums", icon: <FaLandmark /> },
+ { label: "Nhà hàng", icon: <FaUtensils /> },
+  { label: "Tiệm sách", icon: <FaBook /> },
+  { label: "Cửa hàng tiện lợi 24h", icon: <FaStore /> },
+  { label: "Bảo tàng", icon: <FaLandmark /> },
   { label: "Transit", icon: <FaTrain /> },
-  { label: "Pharmacies", icon: <FaPrescriptionBottle /> },
+  { label: "Nhà thuốc", icon: <FaPrescriptionBottle /> },
   { label: "ATMs", icon: <FaMoneyCheckAlt /> },
 ];
 
-const Header: React.FC<SearchPanelProps> = ({onSelectSchool}) => {
+const Header: React.FC<SearchPanelProps & { schools: School[];
+  onSelectResult: (school: School) => void;} > = ({onSelectSchool,schools, onSelectResult}) => {
   const [query, setQuery] = useState("");
+  const [showResults, setShowResults] = useState(false);
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value);
+    setShowResults(true);
+    if (onSelectSchool) onSelectSchool(e.target.value);
   };
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -34,7 +43,11 @@ const Header: React.FC<SearchPanelProps> = ({onSelectSchool}) => {
       onSelectSchool(query.trim());
     }
   };
-
+  const handleResultClick = (school: School) => {
+    setShowResults(false);
+    setQuery(school.name);
+    onSelectResult(school);
+  };
 
 
   return (
@@ -54,6 +67,21 @@ const Header: React.FC<SearchPanelProps> = ({onSelectSchool}) => {
               <FaSearch size={20} />
             </button>
           </form>
+          {showResults && query && (
+            <ul className="absolute top-full left-0 w-full bg-white border rounded shadow z-10 mt-2 max-h-48 overflow-y-auto">
+              {schools
+                .filter(s => s.name.toLowerCase().includes(query.toLowerCase()))
+                .map(school => (
+                  <li
+                    key={school.id}
+                    className="px-4 py-2 hover:bg-blue-100 cursor-pointer"
+                    onClick={() => handleResultClick(school)}
+                  >
+                    {school.name}
+                  </li>
+                ))}
+            </ul>
+          )}
         </div>
         {/* Categories Row */}
         <div className="flex gap-2 overflow-x-auto pb-2 bg-transparent rounded-full px-4">
